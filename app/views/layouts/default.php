@@ -53,7 +53,7 @@
 </ul>
 </div>
 
-<!-- Modal Auth/Reg-->
+<!-- Вызов модальногоокна Авторизации/регистрации-->
 <div class="modal fade text-center reg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog" id="modal-auth">
     <div class="modal-content">
