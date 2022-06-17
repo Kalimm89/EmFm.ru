@@ -117,16 +117,17 @@ class CatalogueController extends Controller
         }
     }
 
-    // public function get_client_ordersAction()
-    // {
-    //     if ($this->isAjax()) {
-    //         $client_id = $_POST['client_id'];
-    //         $res = $this->model->get_client_orders($client_id);
-    //         echo json_encode($res);
-    //     } else {
-    //         echo "<img src='/public/images/errors/404.jpg' width='100%'>";
-    //     }
-    // }
+    public function get_client_ordersAction()
+    {
+        if ($this->isAjax()) {
+            $client_id = $_POST['client_id'];
+            $res = $this->model->get_client_orders($client_id);
+            echo json_encode($res);
+        } else {
+            echo "<img src='/public/images/errors/404.jpg' width='100%'>";
+        }
+    }
+    
     public function registrationAction() {
             
         $email = $POST['regName'];

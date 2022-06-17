@@ -41,6 +41,14 @@ return [
     'catalogue/checkout' => [
         'controller' => 'catalogue',
         'action' => 'checkout'
-    ]
+    ],
+    'test' => [
+        'controller' => 'test',
+        'action' => 'index'],
+        
+        'catalogue/get_client_orders' => [
+            'controller' => 'catalogue',
+            'action' => 'get_client_orders'
+        ]
 
 ];

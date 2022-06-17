@@ -15,8 +15,39 @@
     
 </head>
 
-
+ <!-- Модалка истории покупок-->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">История покупок:</h5>
+      </div>
+      <div class="card mb-3" style="max-width: 540px;" id="modal-orders-content">
+      
+        ...
+      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
   
+<!-- <div class="modal-dialog">
+  <div class="modal-content">
+    <h4>История покупок</h4>
+      <div id="modal-orders-content" class="modal-client-cart">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    
+    </div> -->
+
 <body class="container-fluid mx-auto">
 <div class="container row m-3 center-block mx-auto">
 <ul class="nav d-flex justify-content-between align-items-center">
@@ -38,8 +69,10 @@
 
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li><a class="dropdown-item modal-trigger" id="user-cart" href="#" data-bs-toggle="modal" data-bs-target="#Modal3">Корзина</a></li>
-    <!-- <a href="#modal-products" class="btn btn-primary modal-trigger" data-id="<?= $product['id'] ?>" data-bs-toggle="modal" data-bs-target="#Modal1">В корзину</a> -->
-    <li><a class="dropdown-item modal-trigger" id="user-orders" href="#" data-bs-toggle="modal" data-bs-target="#modal-orders">История покупок</a></li>
+    
+    <li><button type="button" class="btn btn-primary" id="user-orders" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  История покупок
+</button></li>
     <li><a class="dropdown-item" href="?do=exit">Выход</a></li>
   </ul>
 </div>
@@ -53,8 +86,8 @@
 </ul>
 </div>
 
-<!-- Вызов модальногоокна Авторизации/регистрации-->
-<div class="modal fade text-center reg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+<!-- Modal Auth/Reg-->
+<div class="modal fade text-center" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog" id="modal-auth">
     <div class="modal-content">
     <h4>Войти на сайт</h4>
@@ -132,30 +165,52 @@
     </div>
   </div>
 
-  <!-- Модалка История покупок-->
-<!-- <div class="modal fade modal-cart" id="modal-orders" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
   
-  <div class="modal-dialog">
-  <div class="modal-content">
-    <h4>История покупок</h4>
-      <div id="modal-orders-content" class="modal-client-cart">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-      </div>
-    
-    </div>
-  </div> -->
-
-  <!-- НАЧАЛО СКРИПТОВ -->
   <script src="\public\js\bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script>
-
-// Вызов формы Авторизация/Регистрация
-  $('#modal-auth').on('click', '#regTest', function() {
+// Вызов Истории покупок
+$('#user-orders').on('click', function() {
+            const clientId = '<?= $_SESSION['auth']['id']; ?>';
+            if (clientId) {
+                $.ajax({
+                    method: 'post',
+                    url: "/catalogue/get_client_orders",
+                    data: {
+                        client_id: clientId
+                    }
+                }).done(function(resp) {
+                    const products = JSON.parse(resp);
+                    var productCard = '';
+                    products.forEach(product => {
+                        productCard += `
+                        <div class="row g-0" style="border-bottom:2px solid black;">
+                        
+      
+      <div class="col-md-4" style="background-image: url(${product.image});background-size: contain;background-repeat:no-repeat;background-position: center;"></div>
     
-    console.log('HI');
+    <div class="col-md-8">
+      <div class="card-body">
+      <input type="text" data-id="${product.id}" hidden>
+        <h5 class="card-title">${product.name}</h5>
+        <p class="card-text">Колличество: ${product.count}.</p>
+        <p class="card-text"><small class="text-muted">Цена: ${product.price}</small></p>
+      </div>
+      </div>
+    </div>`
+                    });
+
+                    $('#modal-orders-content').html(productCard);
+
+
+                })
+            } else {
+                alert('Client not found');
+            }
+
+
+        });
+// Вызов формы Авторизация/Регистрация
+  $('.modal-content').on('click', '.auth,.reg', function() {
             if ($(this).hasClass('active-auth-btn') == false) {
                 if ($(this).hasClass('reg')) {
                     $('.auth').removeClass('active-auth-btn');
@@ -197,7 +252,7 @@
     <label for="exampleInputPassword1" class="form-label">Пароль</label>
     <input type="text" class="form-control validate" id="exampleInputPassword1 password" name="password">
   </div>
-  <button type="submit" class="btn btn-primary" id="registrate">Регистрация</button>
+  <input type="submit" class="btn btn-primary" id="registrate" value="Регистрация">
   
 </form>
 </div>
@@ -225,11 +280,11 @@
                 `
             }
         };
-
+        
 // Вызов корзины
 $('#user-cart').on('click', function() {
-  
-            const clientId = <?= $_SESSION['auth']['id'] ?>;
+            
+  let clientId = '<?= $_SESSION['auth']['id'] ?>';
             if (clientId) {
                 $.ajax({
                     method: 'post',
@@ -274,27 +329,27 @@ $('#user-cart').on('click', function() {
 
         });
   // Регистрация на сайте
-  // $('#regForm').on('click', '#registrate', function(e) {   
-  //   e.preventDefault();
-  //   console.log('products');
-  //       let regName = '<?= $_POST['email']; ?>';
-  //       let regPassword = '<?= $_POST['password']; ?>';
+  $('#regForm').on('click', '#registrate', function(e) {   
+    e.preventDefault();
+    console.log('products');
+        let regName = '<?= $_POST['email']; ?>';
+        let regPassword = '<?= $_POST['password']; ?>';
        
-  //             $.ajax({
-  //               method: 'post',
-  //               url: "/catalogue/registration",
-  //               data: {
-  //                   regName: regName,
-  //                   regPassword: regPassword
-  //               }                
-  //           }).done(function(resp) {                
-  //               if (resp == 'false') {
-  //                   alert('Произошла ошибка. Попробуйте позже!');
-  //               } else {                    
-  //                 alert('Вы зарегистрировались');
-  //               }
-  //           });
-  //          });
+              $.ajax({
+                method: 'post',
+                url: "/catalogue/registration",
+                data: {
+                    regName: regName,
+                    regPassword: regPassword
+                }                
+            }).done(function(resp) {                
+                if (resp == 'false') {
+                    alert('Произошла ошибка. Попробуйте позже!');
+                } else {                    
+                  alert('Вы зарегистрировались');
+                }
+            });
+           });
 
   // Удаление товаров
            $('.modal-client-cart').on('click', '.delete-product', function(e) {
@@ -375,3 +430,5 @@ $('#user-cart').on('click', function() {
 
 </body>
 </html>
+
+
