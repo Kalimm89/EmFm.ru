@@ -13,9 +13,9 @@ $count_pages = ceil($count_products / $count_on_page);
 <div class="card align-self-center justify-content-center mx-auto m-2" style="height:600px;width:400px;" >
 <div class="align-self-center justify-content-center mx-auto m-2" style="height:400px;width:200px;background-image: url(<?= $product['image'] ?>);background-size: contain;background-repeat:no-repeat;background-position: center;">
 </div>
-  <div class="card-body">
-    <h5 class="card-title product-name"><?= $product['name'] ?></h5>
-    <p class="card-text product-price"><?= $product['price'] . ' Р' ?></p>
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title product-name flex-grow-1"><?= $product['name'] ?></h5>
+    <p class="card-text product-price flex-grow-1"><?= $product['price'] . ' Р' ?></p>
     <a href="#modal-products" class="btn btn-primary modal-trigger" data-id="<?= $product['id'] ?>" data-bs-toggle="modal" data-bs-target="#Modal1">В корзину</a>
   </div>
 </div>
@@ -105,7 +105,7 @@ $count_pages = ceil($count_products / $count_on_page);
             });
           } else {
             alert('авторизуйтесь');
-            header('location: ' . $_SERVER['REDIRECT_URL']); 
+            location.href='/'
           }
 
            });

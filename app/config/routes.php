@@ -26,8 +26,8 @@ return [
         'controller' => 'catalogue',
         'action' => 'add_to_cart'
     ],
-    'test/registration' => [
-        'controller' => 'test',
+    'registration' => [
+        'controller' => 'main',
         'action' => 'registration'
     ],
     'catalogue/delete_from_cart' => [
@@ -42,10 +42,6 @@ return [
         'controller' => 'catalogue',
         'action' => 'checkout'
     ],
-    'test' => [
-        'controller' => 'test',
-        'action' => 'index'],
-        
         'catalogue/get_client_orders' => [
             'controller' => 'catalogue',
             'action' => 'get_client_orders'

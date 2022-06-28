@@ -12,7 +12,11 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
     <script src="\public\js\jquery-3.6.0.js"></script>
     <link href="https://getbootstrap.com/docs/5.2/examples/carousel/carousel.css" rel="stylesheet">
-    
+    <style>
+      body {
+        background-color: 99FFFF;
+      }
+    </style>
 </head>
 
  <!-- Модалка истории покупок-->
@@ -39,10 +43,10 @@
 <!-- Хэдер -->
 <body class="container mx-auto">
 <div class="container m-3 center-block mx-auto">
-<ul class="nav d-flex justify-content-center justify-content-lg-between align-items-center">
-    <img src="/public/images/layout/logo.png" width="100" class="mx-5 col-4 col-lg-2">
-    <h1 class="text-primary fst-italic fw-weight-bold col-lg-4 col-12">EmFm - Enjoy your music today</h1>
-    <div class="d-flex col-lg-4 col-12">
+<ul class="nav d-inline-flex justify-content-center justify-content-lg-between align-items-center row" style="border: 2px solid black;">
+    <img src="/public/images/layout/logo.png" width="100" class="col-4 col-lg-2">
+    <h1 class="text-primary fst-italic fw-weight-bold col-lg-5 col-12 text-center">EmFm - Enjoy your music today</h1>
+    <div class="d-inline-flex col-lg-5 col-12 justify-content-lg-between justify-content-center">
   <li class="nav-item bg-info">
     <a class="nav-link active" aria-current="page" href="/"><h4 class="fst-italic text-dark">Главная</h4></a>
   </li>
@@ -318,7 +322,7 @@ $('#user-cart').on('click', function() {
         // console.log(reg_email);
               $.ajax({
                 method: 'post',
-                url: "/test/registration",
+                url: "registration",
                 data: {
                   reg_email: reg_email,
                   reg_password: reg_password

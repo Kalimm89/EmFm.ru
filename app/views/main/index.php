@@ -8,13 +8,13 @@
     </div>
 
 
-    <div class="container raw carousel-inner collection">
+    <div class="container raw carousel-inner collection d-none d-lg-block">
 
       <div class="carousel-item">
         <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg> -->
         <img src="\public\images\Mic.jpg" class="d-block w-100" alt="...">
         <div class="container">
-          <div class="carousel-caption text-end">
+          <div class="carousel-caption text-end d-none d-lg-block">
             <h1>Студийное звучание.</h1>
             <p>Раскрой свой творческий потенциал наполную!.</p>
             <p><a class="show-products btn btn-primary" style="cursor: pointer;" data-id="1" data-path="microphone">Купить</a></p>
@@ -26,7 +26,7 @@
         <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg> -->
         <img src="\public\images\Guit.jpg" class="d-block w-100" alt="...">
         <div class="container">
-          <div class="carousel-caption text-dark">
+          <div class="carousel-caption text-dark d-none d-lg-block">
             <h1>Почувствуй драйв в твоих руках.</h1>
             <p>Стань рок звездой.</p>
             <p><a class="show-products btn btn-primary" style="cursor: pointer;" data-id="2" data-path="guitar">Купить</a></p>
@@ -38,7 +38,7 @@
         <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg> -->
         <img src="\public\images\Drum.jpg" class="d-block w-100" alt="...">
         <div class="container">
-          <div class="carousel-caption text-start text-primary">
+          <div class="carousel-caption text-start text-primary d-none d-lg-block">
             <h1>Отрывайся по полной.</h1>
             <p>Пусть все услышат ритм в котором ты живёшь!.</p>
             <p><a class="show-products btn btn-primary" data-id="3" data-path="drum" style="cursor: pointer;">Купить</a></p>
@@ -59,7 +59,7 @@
   </div>
 
   <!-- ХИТЫ -->
-  <div class="container d-flex cards m-5 center-block mx-auto">
+  <div class="container d-flex flex-md-row flex-column cards m-5 center-block mx-auto">
 <?php foreach ($data as $product) : ?>
   <div class="card align-self-center justify-content-center mx-auto m-2" style="height:600px;width:400px;" >
 <div class="align-self-center justify-content-center mx-auto m-2" style="height:400px;width:200px;background-image: url(<?= $product['image'] ?>);background-size: contain;background-repeat:no-repeat;background-position: center;">

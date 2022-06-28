@@ -18,9 +18,6 @@ class Db
         } catch (\PDOException $e) {
             die('Db connect error');
         }
-        // echo __CLASS__;
-        // echo get_class();
-        // $this->queryAll("SELECT * FROM pag");
     }
 
     public function queryAll($table_name, $param = null)
@@ -58,9 +55,6 @@ class Db
     {
         $stmt = $this->db->prepare("SELECT COUNT(*) AS count FROM products WHERE catalogue_id = ?");
         $stmt->execute([$catalogue_id]);
-        // return $stmt->fetch(\PDO::FETCH_ASSOC);
-        // $arr = $stmt->fetch(\PDO::FETCH_ASSOC);
-        // return $arr['count'];
         return $stmt->fetch(\PDO::FETCH_ASSOC)['count'];
     }
 
