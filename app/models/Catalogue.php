@@ -25,6 +25,13 @@ class Catalogue extends Model
         return $cats_arr;
     }
 
+
+    public function registration($email, $pass)
+    {
+        return $this->db->registration($email, $pass);
+    }
+
+
     public function getProducts($param_name, $param_value, $cur_page, $count_on_page = 4)
     {
 
@@ -164,13 +171,6 @@ class Catalogue extends Model
                 return $client_card;
             }
         }
-        // return $product;
-        // $arr = [$client_id, $product_id, $count, $price];
-        // return json_encode($product);
+      
     }
 }
-
-// id
-// name
-// img
-// count => $count

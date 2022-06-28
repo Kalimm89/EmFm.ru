@@ -26,8 +26,8 @@ return [
         'controller' => 'catalogue',
         'action' => 'add_to_cart'
     ],
-    'catalogue/registration' => [
-        'controller' => 'catalogue',
+    'test/registration' => [
+        'controller' => 'test',
         'action' => 'registration'
     ],
     'catalogue/delete_from_cart' => [

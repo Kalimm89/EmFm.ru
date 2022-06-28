@@ -128,14 +128,5 @@ class CatalogueController extends Controller
         }
     }
     
-    public function registrationAction() {
-            
-        $email = $POST['regName'];
-        $pass = $POST['regPassword'];
-        // debug($email);
-        $pass_hash = password_hash($pass, PASSWORD_BCRYPT);
-        $res = $this->db->registration($email, $pass_hash);
-        echo json_encode($res);
     
-}
 }

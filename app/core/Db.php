@@ -150,14 +150,3 @@ class Db
         return $res;
     }
 }
-
-
-
-// arr = ['id' => 5];
-// arr['id'] = 5
-// id
-
-// id	client_id	product_id	count	price
-// 0   1           2           2       22626
-// 1   1           3           1       5566
-// 2   1           2           1       22626

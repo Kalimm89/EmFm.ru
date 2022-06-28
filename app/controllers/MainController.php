@@ -12,5 +12,5 @@ class MainController extends Controller
         $this->view->render($arr);
     }
 
-   
+    
 }

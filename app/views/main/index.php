@@ -6,7 +6,9 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class="active" aria-current="true"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
     </div>
-    <div class="carousel-inner">
+
+
+    <div class="container raw carousel-inner collection">
 
       <div class="carousel-item">
         <!-- <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"></rect></svg> -->
@@ -15,7 +17,7 @@
           <div class="carousel-caption text-end">
             <h1>Студийное звучание.</h1>
             <p>Раскрой свой творческий потенциал наполную!.</p>
-            <p><a class="btn btn-lg btn-primary" href="/catalogue/microphone">Купить</a></p>
+            <p><a class="show-products btn btn-primary" style="cursor: pointer;" data-id="1" data-path="microphone">Купить</a></p>
           </div>
         </div>
       </div>
@@ -27,7 +29,7 @@
           <div class="carousel-caption text-dark">
             <h1>Почувствуй драйв в твоих руках.</h1>
             <p>Стань рок звездой.</p>
-            <p><a class="btn btn-lg btn-primary" href="/catalogue/guitar">Купить</a></p>
+            <p><a class="show-products btn btn-primary" style="cursor: pointer;" data-id="2" data-path="guitar">Купить</a></p>
           </div>
         </div>
       </div>
@@ -39,7 +41,7 @@
           <div class="carousel-caption text-start text-primary">
             <h1>Отрывайся по полной.</h1>
             <p>Пусть все услышат ритм в котором ты живёшь!.</p>
-            <p><a class="btn btn-lg btn-primary" href="/catalogue/drum">Купить</a></p>
+            <p><a class="show-products btn btn-primary" data-id="3" data-path="drum" style="cursor: pointer;">Купить</a></p>
           </div>
         </div>
       </div>
@@ -62,10 +64,10 @@
   <div class="card align-self-center justify-content-center mx-auto m-2" style="height:600px;width:400px;" >
 <div class="align-self-center justify-content-center mx-auto m-2" style="height:400px;width:200px;background-image: url(<?= $product['image'] ?>);background-size: contain;background-repeat:no-repeat;background-position: center;">
 </div>
-  <div class="card-body">
-    <h5 class="card-title product-name"><?= $product['name'] ?></h5>
-    <p class="card-text product-price"><?= $product['price'] . ' Р' ?></p>
-    <a href="#modal-products" class="btn btn-primary modal-trigger" data-id="<?= $product['id'] ?>" data-bs-toggle="modal" data-bs-target="#Modal1">В корзину</a>
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title product-name flex-grow-1"><?= $product['name'] ?></h5>
+    <p class="card-text product-price flex-grow-1"><?= $product['price'] . ' Р' ?></p>
+    <a href="/catalogue" class="btn btn-primary modal-trigger ">В каталог</a>
   </div>
 </div>
 <?php endforeach; ?>
@@ -140,3 +142,12 @@
 </div>
 </div>
 
+<script>
+    $('.collection').on('click', '.show-products', function(e) {
+        e.preventDefault();
+        const catId = $(this).data('id');
+        const path = $(this).data('path');
+        // console.log($catId);
+        location.replace(`catalogue/${path}?cat_id=${catId}`);
+    })
+</script>

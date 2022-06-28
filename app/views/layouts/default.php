@@ -36,24 +36,13 @@
   </div>
 </div>
   
-<!-- <div class="modal-dialog">
-  <div class="modal-content">
-    <h4>История покупок</h4>
-      <div id="modal-orders-content" class="modal-client-cart">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-      </div>
-    
-    </div> -->
-
-<body class="container-fluid mx-auto">
-<div class="container row m-3 center-block mx-auto">
-<ul class="nav d-flex justify-content-between align-items-center">
-    <img src="/public/images/layout/logo.png" width="100" class="mx-5">
-    <h1 class="text-primary fst-italic fw-weight-bold">EmFm - Enjoy your music today</h1>
-    <div class="d-flex">
+<!-- Хэдер -->
+<body class="container mx-auto">
+<div class="container m-3 center-block mx-auto">
+<ul class="nav d-flex justify-content-center justify-content-lg-between align-items-center">
+    <img src="/public/images/layout/logo.png" width="100" class="mx-5 col-4 col-lg-2">
+    <h1 class="text-primary fst-italic fw-weight-bold col-lg-4 col-12">EmFm - Enjoy your music today</h1>
+    <div class="d-flex col-lg-4 col-12">
   <li class="nav-item bg-info">
     <a class="nav-link active" aria-current="page" href="/"><h4 class="fst-italic text-dark">Главная</h4></a>
   </li>
@@ -70,9 +59,9 @@
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li><a class="dropdown-item modal-trigger" id="user-cart" href="#" data-bs-toggle="modal" data-bs-target="#Modal3">Корзина</a></li>
     
-    <li><button type="button" class="btn btn-primary" id="user-orders" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <li><a class="dropdown-item modal-trigger" id="user-orders" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
   История покупок
-</button></li>
+  </a></li>
     <li><a class="dropdown-item" href="?do=exit">Выход</a></li>
   </ul>
 </div>
@@ -86,7 +75,7 @@
 </ul>
 </div>
 
-<!-- Modal Auth/Reg-->
+<!-- Модальное окно Авторизация/Регистрация-->
 <div class="modal fade text-center" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog" id="modal-auth">
     <div class="modal-content">
@@ -106,7 +95,6 @@
     <input type="text" class="form-control validate" id="exampleInputPassword1 password" name="password">
   </div>
   <input type="submit" class="btn btn-primary" value="Вход">
-  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 </form>
     </div>
   </div>
@@ -146,7 +134,6 @@
   <!-- Footer -->
 </div> 
 
-<!-- КОНЕЦ ФУТЕРА -->
 
 <!-- Модалка Вызов корзины-->
 <div class="modal fade modal-cart" id="Modal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
@@ -184,19 +171,17 @@ $('#user-orders').on('click', function() {
                     products.forEach(product => {
                         productCard += `
                         <div class="row g-0" style="border-bottom:2px solid black;">
-                        
-      
-      <div class="col-md-4" style="background-image: url(${product.image});background-size: contain;background-repeat:no-repeat;background-position: center;"></div>
-    
-    <div class="col-md-8">
-      <div class="card-body">
-      <input type="text" data-id="${product.id}" hidden>
-        <h5 class="card-title">${product.name}</h5>
-        <p class="card-text">Колличество: ${product.count}.</p>
-        <p class="card-text"><small class="text-muted">Цена: ${product.price}</small></p>
-      </div>
-      </div>
-    </div>`
+                          <div class="col-md-4" style="background-image: url(${product.image});background-size: contain;background-repeat:no-repeat;background-position: center;"></div>
+                            <div class="col-md-8">
+                              <div class="card-body">
+                                <input type="text" data-id="${product.id}" hidden>
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">Колличество: ${product.count}.</p>
+                                <p class="card-text"><small class="text-muted">Цена: ${product.price}</small></p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
                     });
 
                     $('#modal-orders-content').html(productCard);
@@ -245,12 +230,12 @@ $('#user-orders').on('click', function() {
     <form class="col-12" id="regForm" method="POST">
   <div class="m-3">
     <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="text" class="form-control validate" id="exampleInputEmail1 email" name="email" aria-describedby="emailHelp">
+    <input type="text" class="form-control validate" id="exampleInputEmail1 email" name="email_reg" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text">Не сообщайте ваш логин и пароль третьим лицам</div>
   </div>
   <div class="m-3">
     <label for="exampleInputPassword1" class="form-label">Пароль</label>
-    <input type="text" class="form-control validate" id="exampleInputPassword1 password" name="password">
+    <input type="text" class="form-control validate" id="exampleInputPassword1 password" name="password_reg">
   </div>
   <input type="submit" class="btn btn-primary" id="registrate" value="Регистрация">
   
@@ -298,24 +283,20 @@ $('#user-cart').on('click', function() {
                     
                     var productCard = '';
                     products.forEach(product => {
-                        productCard += `        
-                        <div class="container row">
-                            <div class="card">
-                                    <div class="card-image row d-flex">
-                                        <img class="modal-product-image img-fluid d-block w-25" src="${product.image}">
-                                        <p class="col-4">
-                                            <input type="text" data-id="${product.id}" hidden>
-                                            Товар: <span class="modal-product-name">${product.name}</span>
-                                            <br>
-                                            Количество: <span class=""><input type="number" name="amount" value="${product.count}" min="1"></span>
-                                            <br>
-                                            Цена: <span class="modal-product-price">${product.price} Р</span>
-                                        </p>
-                                        <a class="btn waves-effect waves-red btn-primary delete-product" style="position:absolute;bottom:10px;right:10px">Удалить товар</a>
-
-                                    </div>
-                                </div>
-                                </div>`
+                        productCard += `
+                        <div class="row g-0" style="border-bottom:2px solid black;">
+                          <div class="col-md-4" style="background-image: url(${product.image});background-size: contain;background-repeat:no-repeat;background-position: center;"></div>
+                            <div class="col-md-8">
+                              <div class="card-body card-image">
+                                <input type="text" data-id="${product.id}" hidden>
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">Количество: <span class=""><input type="number" name="amount" value="${product.count}" min="1"></span></p>
+                                <p class="card-text"><small class="text-muted">Цена: ${product.price}</small></p>
+                                <a class="btn waves-effect waves-red btn-primary delete-product m-2" style="">Удалить товар</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
                     });
 
                     $('#modal-cart-content').html(productCard);
@@ -324,29 +305,31 @@ $('#user-cart').on('click', function() {
                 })
             } else {
                 alert('Client not found');
+                
             }
          
 
         });
   // Регистрация на сайте
-  $('#regForm').on('click', '#registrate', function(e) {   
+  $('#modal-auth').on('click', '#registrate', function(e) {   
     e.preventDefault();
-    console.log('products');
-        let regName = '<?= $_POST['email']; ?>';
-        let regPassword = '<?= $_POST['password']; ?>';
-       
+        let reg_email = $('input[name="email_reg"]').val();
+        let reg_password = $('input[name="password_reg"]').val();
+        // console.log(reg_email);
               $.ajax({
                 method: 'post',
-                url: "/catalogue/registration",
+                url: "/test/registration",
                 data: {
-                    regName: regName,
-                    regPassword: regPassword
+                  reg_email: reg_email,
+                  reg_password: reg_password
                 }                
-            }).done(function(resp) {                
+            }).done(function(resp) {  
+              // console.log(resp);              
                 if (resp == 'false') {
                     alert('Произошла ошибка. Попробуйте позже!');
                 } else {                    
                   alert('Вы зарегистрировались');
+                  location.href='/'
                 }
             });
            });
@@ -368,24 +351,20 @@ $('#user-cart').on('click', function() {
                     const products = JSON.parse(resp);
                     var productCard = '';
                     products.forEach(product => {
-                        productCard += `        
-                        <div class="container row">
-                            <div class="card">
-                                    <div class="card-image row d-flex">
-                                        <img class="modal-product-image img-fluid d-block w-25" src="${product.image}">
-                                        <p class="col-4">
-                                            <input type="text" data-id="${product.id}" hidden>
-                                            Товар: <span class="modal-product-name">${product.name}</span>
-                                            <br>
-                                            Количество: <span class=""><input type="number" name="amount" value="${product.count}" min="1"></span>
-                                            <br>
-                                            Цена: <span class="modal-product-price">${product.price} Р</span>
-                                        </p>
-                                        <a class="btn waves-effect waves-red btn-primary delete-product" style="position:absolute;bottom:10px;right:10px">Удалить товар</a>
-
-                                    </div>
-                                </div>
-                                </div>`
+                        productCard += `
+                        <div class="row g-0" style="border-bottom:2px solid black;">
+                          <div class="col-md-4" style="background-image: url(${product.image});background-size: contain;background-repeat:no-repeat;background-position: center;"></div>
+                            <div class="col-md-8">
+                              <div class="card-body card-image">
+                                <input type="text" data-id="${product.id}" hidden>
+                                <h5 class="card-title">${product.name}</h5>
+                                <p class="card-text">Количество: <span class=""><input type="number" name="amount" value="${product.count}" min="1"></span></p>
+                                <p class="card-text"><small class="text-muted">Цена: ${product.price}</small></p>
+                                <a class="btn waves-effect waves-red btn-primary delete-product m-2" style="">Удалить товар</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>`
                     });
                     $('.modal-client-cart').html(productCard);
                 }
