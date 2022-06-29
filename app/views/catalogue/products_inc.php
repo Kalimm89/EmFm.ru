@@ -8,7 +8,7 @@ $count_pages = ceil($count_products / $count_on_page);
 
 ?>
 
-<div class="container d-flex cards">
+<div class="container d-flex cards flex-md-row flex-column">
 <?php foreach ($products as $product) : ?>
 <div class="card align-self-center justify-content-center mx-auto m-2" style="height:600px;width:400px;" >
 <div class="align-self-center justify-content-center mx-auto m-2" style="height:400px;width:200px;background-image: url(<?= $product['image'] ?>);background-size: contain;background-repeat:no-repeat;background-position: center;">

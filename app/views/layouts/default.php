@@ -41,12 +41,12 @@
 </div>
   
 <!-- Хэдер -->
-<body class="container mx-auto">
+<body class="container mx-auto text-center">
 <div class="container m-3 center-block mx-auto">
-<ul class="nav d-inline-flex justify-content-center justify-content-lg-between align-items-center row" style="border: 2px solid black;">
+<ul class="nav d-inline-flex justify-content-center justify-content-lg-between align-items-center row">
     <img src="/public/images/layout/logo.png" width="100" class="col-4 col-lg-2">
     <h1 class="text-primary fst-italic fw-weight-bold col-lg-5 col-12 text-center">EmFm - Enjoy your music today</h1>
-    <div class="d-inline-flex col-lg-5 col-12 justify-content-lg-between justify-content-center">
+    <div class="d-inline-flex col-lg-5 col-12 justify-content-center">
   <li class="nav-item bg-info">
     <a class="nav-link active" aria-current="page" href="/"><h4 class="fst-italic text-dark">Главная</h4></a>
   </li>
@@ -403,7 +403,7 @@ $('#user-cart').on('click', function() {
                     alert('Произошла ошибка. Попробуйте позже!');
                 } else {
                     alert('Заказ успешно оформлен!');
-                    header('location: ' . $_SERVER['REDIRECT_URL']);
+                    location.href='/'
                 }
             })
 

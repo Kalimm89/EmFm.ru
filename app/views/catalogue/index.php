@@ -1,7 +1,7 @@
 <div class="container">
 <ol class="list-group list-group-numbered collection container m-5">
 <?php foreach ($data as $cat) : ?>
-  <a class=" show-products text-decoration-none d-flex justify-content-center align-items-start border-none" style="cursor: pointer;" data-id="<?= $cat['id']; ?>" data-path="<?= $cat['path']; ?>">
+  <a class=" show-products text-decoration-none d-block justify-content-betwen align-items-start border-none" style="cursor: pointer;" data-id="<?= $cat['id']; ?>" data-path="<?= $cat['path']; ?>">
   <li class="list-group-item d-flex justify-content-between align-items-center m-2">
   <img src="<?= $cat['image']; ?>" class="img-fluid" width="100px">
 
